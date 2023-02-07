@@ -2,11 +2,11 @@
 
 ### Running
 
-Open a terminal.
+1. Open a terminal.
 
-Navigate to this directory.
+2. Navigate to this directory.
 
-Run it with python3.
+3. Run it with python3.
 ```
 python3 subsets.py
 ```
