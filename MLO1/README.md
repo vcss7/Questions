@@ -1,4 +1,5 @@
 ## Subsets
+Written in python.
 
 ### Running
 
@@ -12,4 +13,12 @@ python3 subsets.py
 ```
 
 Output will be the powersets of hardcoded sets.
+
+
+## Remove Duplicate from Sorted List
+Written in C.
+
+### Compiling
+
+### Running
 
