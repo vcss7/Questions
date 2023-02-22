@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{k+kr}{const} \PYG{n+nx}{isMatch} \PYG{o}{=} \PYG{p}{(}\PYG{n+nx}{s}\PYG{p}{,} \PYG{n+nx}{p}\PYG{p}{)} \PYG{p}{=\PYGZgt{}} \PYG{p}{\PYGZob{}}
+    \PYG{k+kr}{const} \PYG{n+nx}{dfs} \PYG{o}{=} \PYG{p}{(}\PYG{n+nx}{i}\PYG{p}{,} \PYG{n+nx}{j}\PYG{p}{)} \PYG{p}{=\PYGZgt{}} \PYG{p}{\PYGZob{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nx}{i} \PYG{o}{\PYGZgt{}=} \PYG{n+nx}{s}\PYG{p}{.}\PYG{n+nx}{length} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nx}{j} \PYG{o}{\PYGZgt{}=} \PYG{n+nx}{p}\PYG{p}{.}\PYG{n+nx}{length}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{k}{return} \PYG{k+kc}{true}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nx}{j} \PYG{o}{\PYGZgt{}=} \PYG{n+nx}{p}\PYG{p}{.}\PYG{n+nx}{length}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{k}{return} \PYG{k+kc}{false}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k+kr}{const} \PYG{n+nx}{match} \PYG{o}{=} \PYG{n+nx}{i} \PYG{o}{\PYGZlt{}} \PYG{n+nx}{s}\PYG{p}{.}\PYG{n+nx}{length} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{p}{(}\PYG{n+nx}{s}\PYG{p}{[}\PYG{n+nx}{i}\PYG{p}{]} \PYG{o}{===} \PYG{n+nx}{p}\PYG{p}{[}\PYG{n+nx}{j}\PYG{p}{]} \PYG{o}{||} \PYG{n+nx}{p}\PYG{p}{[}\PYG{n+nx}{j}\PYG{p}{]} \PYG{o}{===} \PYG{l+s+s1}{\PYGZsq{}.\PYGZsq{}}\PYG{p}{);}
+        \PYG{k}{if} \PYG{p}{(((}\PYG{n+nx}{j} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{n+nx}{p}\PYG{p}{.}\PYG{n+nx}{length}\PYG{p}{)} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nx}{p}\PYG{p}{[}\PYG{n+nx}{j} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{===} \PYG{l+s+s1}{\PYGZsq{}*\PYGZsq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{k}{return} \PYG{p}{(}\PYG{n+nx}{dfs}\PYG{p}{(}\PYG{n+nx}{i}\PYG{p}{,} \PYG{n+nx}{j} \PYG{o}{+} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{||}
+                    \PYG{p}{(}\PYG{n+nx}{match} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nx}{dfs}\PYG{p}{(}\PYG{n+nx}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n+nx}{j}\PYG{p}{))}
+                \PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nx}{match}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{k}{return} \PYG{n+nx}{dfs}\PYG{p}{(}\PYG{n+nx}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n+nx}{j} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{return} \PYG{k+kc}{false}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{n+nx}{dfs}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -154,6 +154,8 @@ Problem: \url{https://leetcode.com/problems/valid-parentheses/}
     \end{algorithmic}
 \subsection*{Code}
 
+\subsubsection*{C++}
+
 \begin{minted}{cpp}
 class Solution {
 public:
@@ -185,8 +187,153 @@ public:
 };
 \end{minted}
 
+\subsubsection*{Java}
+
+\begin{minted}{java}
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char ch: s.toCharArray()) {
+            switch(ch) {
+                case('('):
+                case('['):
+                case('{'):
+                    stack.push(ch);
+                    break;
+                case(')'):
+                    if (stack.empty() || stack.peek() != '(') {
+                        return false;
+                    }
+                    stack.pop();
+                    break;
+                case(']'):
+                    if (stack.empty() || stack.peek() != '[') {
+                        return false;
+                    }
+                    stack.pop();
+                    break;
+                case('}'):
+                    if (stack.empty() || stack.peek() != '{') {
+                        return false;
+                    }
+                    stack.pop();
+                    break;
+            }
+        }
+        return stack.rmpty();
+    }
+}
+\end{minted}
+
+\subsubsection*{Python}
+\begin{minted}{python}
+    class Solution(object):
+        def isValid(self, s):
+            stack = []
+            characters = {"(": ")", "{": "}", "[": "]"}
+            for char in s:
+                if char in characters:
+                    top_element = stack.pop() if stack else '#'
+                    if characters[char] != top_element:
+                        return False
+                    else:
+                        stack.append(char)
+
+            return not stack
+\end{minted}
+
 \section*{Question 4: Regular Expression Matching}
 Problem: \url{https://leetcode.com/problems/regular-expression-matching/}
 \subsection*{Pseudocode}
+    \begin{algorithmic}
+        \Function{isMatch}{string $s$, string $p$}
+            \Function{DFS}{int $i$, int $j$}
+                \If{$i \geq s.length$}
+                    \If{$j \geq p.length$}
+                        \State {return True}
+                    \EndIf
+                \EndIf
+                \If{$j \geq p.length$}
+                    \State {return False}
+                \EndIf
+
+                \State {$a \gets i < s.length$}
+                \State {$b \gets s[i] == p[i]$ \textbf{or} $p[j] == .$}
+
+                \State {$match \gets a$ \textbf{and} $b$}
+
+                \If{$j+1 < p.length$ \textbf{and} $p[j+1] = *$}
+                    \State{ return $DFS(i, j+2)$ \textbf{or} $(match$ \textbf{and} $DFS(i+1,j))$
+                \EndIf
+
+                \If{$match$}
+                    \State {return $DFS(i+1,j+1)$
+                \Else
+                    \State {return False}
+                \EndIf
+
+            \EndFunction
+        \EndFunction
+    \end{algorithmic}
+
 \subsection*{Code}
+\subsubsection*{Python}
+\begin{minted}{python}
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        cache = {}
+
+        def dfs(i, j):
+            if (i, j) in cache:
+                return cache[(i, j)]
+
+            #Base cases
+            #if both iterated to end of strings
+            if i >= len(s) and j >= len(p):
+                return True
+
+            #if j is out of bounds but i is still in bounds
+            if j >= len(p):
+                return False
+
+            match = i < len(s) and (s[i] == p[j] or p[j] ==".")
+
+            if (j + 1) < len(p) and p[j + 1] == "*":
+
+                #either repeat once or zero times
+                cache[(i, j)] = (dfs(i, j + 2) or
+                                (match and dfs(i + 1, j)))
+                return cache[(i, j)]
+            if match:
+                cache[(i,j)] = dfs(i + 1, j + 1)
+                return cache[(i,j)]
+            cache[(i,j)] = False
+            return False
+        return dfs(0, 0)
+\end{minted}
+
+\subsubsection*{JavaScript}
+\begin{minted}{javascript}
+    const isMatch = (s, p) => {
+    const dfs = (i, j) => {
+        if (i >= s.length && j >= p.length) {
+            return true;
+        }
+        if (j >= p.length) {
+            return false;
+        }
+        const match = i < s.length && (s[i] === p[j] || p[j] === '.');
+        if (((j + 1) < p.length) && p[j + 1] === '*') {
+            return (dfs(i, j + 2) ||
+                    (match && dfs(i + 1, j))
+                );
+        }
+        if (match) {
+            return dfs(i + 1, j + 1);
+        }
+        return false;
+    }
+    return dfs(0, 0)
+}
+\end{minted}
 \end{document}
