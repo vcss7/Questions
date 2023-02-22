@@ -43,7 +43,6 @@
 \usepackage{hyperref} % Required for adding hyperlinkes
 \usepackage{algorithm}
 \usepackage{algpseudocode} % Required for pseudocode
-\usepackage{minted} % Required for code blocks and syntax highlighting
 
 \hypersetup{
     colorlinks=true,
@@ -132,58 +131,9 @@ Problem: \url{https://leetcode.com/problems/valid-parentheses/}
 
 \subsection*{Pseudocode}
     \begin{algorithmic}
-        \Function{isValid}{$s$}\Comment{Valid parentheses in string s}
-            \State $A \gets []$\Comment{Create Stack}
-            \For{$i \gets 0, s.length - 1$}
-                \If{$s[i] = ($ \textbf{or} $s[i] = [$ \textbf{or} $s[i] = \{$}
-                    \State $A.push(s[i])$
-                \ElsIf{$s[i] = )$ or $s[i] = ]$ or $s[i] = \}$}
-                    \If{$A.top \neq ($ \textbf{or} $A.top \neq [$ \textbf{or} $A.top \neq \{$}
-                        \State $break$
-                    \Else
-                        \State $A.pop()$
-                    \EndIf
-                \EndIf
-            \EndFor
-
-            \If {$A.empty()$}
-                \State {return true}
-            \Else \State {return false}
-            \EndIf
-        \EndFunction
+        \State $A \gets []$
     \end{algorithmic}
 \subsection*{Code}
-
-\begin{minted}{cpp}
-class Solution {
-public:
-    bool isValid(std::string s) {
-        std::stack<char> a;
-        for (char c : s) {
-            switch (c) {
-                case ('('):
-                case ('['):
-                case ('{'):
-                    a.push(c);
-                    break;
-                case (')'):
-                    if (a.empty() || a.top() != '(') { return false; }
-                    a.pop();
-                    break;
-                case (']'):
-                    if (a.empty() || a.top() != '[') { return false; }
-                    a.pop();
-                    break;
-                case ('}'):
-                    if (a.empty() || a.top() != '{') { return false; }
-                    a.pop();
-                    break;
-            }
-        }
-        return a.empty();
-    }
-};
-\end{minted}
 
 \section*{Question 4: Regular Expression Matching}
 Problem: \url{https://leetcode.com/problems/regular-expression-matching/}

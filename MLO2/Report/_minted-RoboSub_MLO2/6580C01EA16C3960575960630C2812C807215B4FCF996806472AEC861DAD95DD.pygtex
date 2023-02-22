@@ -1,0 +1,30 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Solution} \PYG{p}{\PYGZob{}}
+\PYG{k}{public}\PYG{o}{:}
+    \PYG{k+kt}{bool} \PYG{n}{isValid}\PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{s}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{n}{std}\PYG{o}{::}\PYG{n}{stack}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{char}\PYG{o}{\PYGZgt{}} \PYG{n}{a}\PYG{p}{;}
+        \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{char} \PYG{n+nl}{c} \PYG{p}{:} \PYG{n}{s}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{k}{switch} \PYG{p}{(}\PYG{n}{c}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                \PYG{k}{case} \PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}(\PYGZsq{}}\PYG{p}{)}\PYG{o}{:}
+                \PYG{k}{case} \PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}[\PYGZsq{}}\PYG{p}{)}\PYG{o}{:}
+                \PYG{k}{case} \PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}\PYGZob{}\PYGZsq{}}\PYG{p}{)}\PYG{o}{:}
+                    \PYG{n}{a}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{c}\PYG{p}{);}
+                    \PYG{k}{break}\PYG{p}{;}
+                \PYG{k}{case} \PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{})\PYGZsq{}}\PYG{p}{)}\PYG{o}{:}
+                    \PYG{k}{if} \PYG{p}{(}\PYG{n}{a}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{()} \PYG{o}{||} \PYG{n}{a}\PYG{p}{.}\PYG{n}{top}\PYG{p}{()} \PYG{o}{!=} \PYG{l+s+sc}{\PYGZsq{}(\PYGZsq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+                    \PYG{n}{a}\PYG{p}{.}\PYG{n}{pop}\PYG{p}{();}
+                    \PYG{k}{break}\PYG{p}{;}
+                \PYG{k}{case} \PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}]\PYGZsq{}}\PYG{p}{)}\PYG{o}{:}
+                    \PYG{k}{if} \PYG{p}{(}\PYG{n}{a}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{()} \PYG{o}{||} \PYG{n}{a}\PYG{p}{.}\PYG{n}{top}\PYG{p}{()} \PYG{o}{!=} \PYG{l+s+sc}{\PYGZsq{}[\PYGZsq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+                    \PYG{n}{a}\PYG{p}{.}\PYG{n}{pop}\PYG{p}{();}
+                    \PYG{k}{break}\PYG{p}{;}
+                \PYG{k}{case} \PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}\PYGZcb{}\PYGZsq{}}\PYG{p}{)}\PYG{o}{:}
+                    \PYG{k}{if} \PYG{p}{(}\PYG{n}{a}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{()} \PYG{o}{||} \PYG{n}{a}\PYG{p}{.}\PYG{n}{top}\PYG{p}{()} \PYG{o}{!=} \PYG{l+s+sc}{\PYGZsq{}\PYGZob{}\PYGZsq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+                    \PYG{n}{a}\PYG{p}{.}\PYG{n}{pop}\PYG{p}{();}
+                    \PYG{k}{break}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{return} \PYG{n}{a}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{();}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}
