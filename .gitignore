@@ -3,6 +3,10 @@
 *.dvi
 *.log
 
+## Minted ##
+*.toc
+_minted/*
+
 ### C ###
 # Prerequisites
 *.d
