@@ -7,8 +7,14 @@ repost.
 
 ## MLO1
 
-MLO1 will have answers to:
+Programming and Software Engineering
 
 1. [Subsets](https://leetcode.com/problems/subsets/)
 2. [Remove Duplicates from Sorted List](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
 
+## MLO2
+
+Discrete Mathematics & Automata Theory
+
+1. [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)
+2. [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)
