@@ -41,6 +41,7 @@ sudo apt-get install texlive-full
 sudo pacman -S python-pip
 
 # debian-based system
+sudo apt install python-pip
 
 # any systems
 pip install Pygments
