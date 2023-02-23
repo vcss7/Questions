@@ -35,84 +35,94 @@
 \documentclass[11pt]{article}
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
-\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage[T1]{fontenc}    % Output font encoding for international characters
 
-\usepackage{mathpazo} % Palatino font
+\usepackage{mathpazo}       % Palatino font
 
-    \usepackage{graphicx} % Required for adding images
+\usepackage{graphicx}       % Required for adding images
+\usepackage{hyperref}       % Required for adding hyperlinks
+\usepackage{algorithm}      % Required for adding psuedocode
+\usepackage{algpseudocode}  % Required for adding psuedocode
+\usepackage{minted}         % Required for adding code syntax highlighting
+
+
+\hypersetup{                % Hyperlink setup
+    colorlink=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan
+}
+
 
 \begin{document}
 
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %	TITLE PAGE
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+% Suppresses page number on the title page
+% Subsequent page starts page count at 1
+\begin{titlepage} 
 
-\begin{titlepage} % Suppresses displaying the page number on the title page and the subsequent page counts as page 1
-
-	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for horizontal lines, change thickness here
-
+    % Defines a new command for horizontal lines, change thickness here
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
 	\center % Center everything on the page
 
 	%------------------------------------------------
 	%	Main Heading
 	%------------------------------------------------
-
-	\textsc{\LARGE California State University, Los Angeles}\\[1.5cm] % Main heading
+    % Main heading
+	\textsc{\LARGE California State University, Los Angeles}\\[1.5cm] 
 
 	%------------------------------------------------
 	%	Title
 	%------------------------------------------------
-
 	\HRule\\[0.4cm]
-
-    {\huge\bfseries Module Level Outcome: \emph{Insert MLO here}}\\[0.4cm] % Title
-
+    % Title
+    {\huge\bfseries Module Level Outcome: \emph{Insert MLO here}}\\[0.4cm] 
 	\HRule\\[1.5cm]
 
 	%------------------------------------------------
 	%	Logo
 	%------------------------------------------------
-
 	\vfill\vfill
-	\includegraphics[width=0.5\textwidth]{robosub_logo.png}\\[1cm] % Include a department/university logo - this will require the graphicx package
+    % Include a department/university logo
+	\includegraphics[width=0.5\textwidth]{robosub_logo.png}\\[1cm] 
 
 	%------------------------------------------------
 	%	Major Heading
 	%------------------------------------------------
-
-	\textsc{\Large RoboSub}\\[0.5cm] % Major heading
-
-	% \textsc{\large }\\[0.5cm] % Minor heading
+    % Major heading
+	\textsc{\Large RoboSub}\\[0.5cm] 
+    % Minor heading
+	% \textsc{\large }\\[0.5cm] 
 
 	%------------------------------------------------
 	%	Author(s)
 	%------------------------------------------------
-
 	{\large\textit{Members}}\\
-	Thomas \textsc{Benson}, % Your name
-	David \textsc{Camacho}, % Your name
-	Bailey \textsc{Canham}, % Your name
-	Brandon \textsc{Cao}, % Your name
-	Roberto \textsc{Hernandez}, % Your name
-	Andrew \textsc{Heusser}, % Your name
-    Hector \textsc{Mora-Silva},\\ % Your name
-	Bart \textsc{Rando}, % Your name
-	Victor \textsc{Solis} % Your name
+	Thomas \textsc{Benson},
+	David \textsc{Camacho},
+	Bailey \textsc{Canham},
+	Brandon \textsc{Cao},
+	Roberto \textsc{Hernandez},
+	Andrew \textsc{Heusser},
+    Hector \textsc{Mora-Silva},\\
+	Bart \textsc{Rando},
+	Victor \textsc{Solis}
 
 	%------------------------------------------------
 	%	Date
 	%------------------------------------------------
+    % Position the date 3/4 down the remaining page
+	\vfill\vfill\vfill 
+    % Date
+	{\large\today} 
 
-	\vfill\vfill\vfill % Position the date 3/4 down the remaining page
-
-	{\large\today} % Date
-
-	%----------------------------------------------------------------------------------------
-
-	\vfill % Push the date up 1/4 of the remaining page
+	%---------------------------------------------------------------------------
+    % Push the date up 1/4 of the remaining page
+	\vfill 
 
 \end{titlepage}
-
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 
 \end{document}
