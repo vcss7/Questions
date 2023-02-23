@@ -13,24 +13,11 @@
 % License:
 % CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
 %
-% Instructions for using this template:
-% This title page is capable of being compiled as is. This is not useful for
-% including it in another document. To do this, you have two options:
-%
-% 1) Copy/paste everything between \begin{document} and \end{document}
-% starting at \begin{titlepage} and paste this into another LaTeX file where you
-% want your title page.
-% OR
-% 2) Remove everything outside the \begin{titlepage} and \end{titlepage}, rename
-% this file and move it to the same directory as the LaTeX file you wish to add it to.
-% Then add \input{./<new filename>.tex} to your LaTeX file where you want your
-% title page.
-%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 
 \documentclass[11pt]{article}
 
@@ -39,6 +26,7 @@
 
 \usepackage{mathpazo}       % Palatino font
 
+\usepackage{geometry}       % Required for margins
 \usepackage{graphicx}       % Required for adding images
 \usepackage{hyperref}       % Required for adding hyperlinks
 \usepackage{algorithm}      % Required for adding psuedocode
@@ -46,8 +34,14 @@
 \usepackage{minted}         % Required for adding code syntax highlighting
 
 
+\geometry{                  % Geometry setup
+    a4paper,
+    margin=3.5cm,
+    showframe
+}
+
 \hypersetup{                % Hyperlink setup
-    colorlink=true,
+    colorlinks=true,
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=cyan
@@ -123,6 +117,40 @@
 	\vfill 
 
 \end{titlepage}
+
 %-------------------------------------------------------------------------------
 
+%-------------------------------------------------------------------------------
+% Table of Contents
+%-------------------------------------------------------------------------------
+\tableofcontents
+\newpage
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+% Content
+%-------------------------------------------------------------------------------
+
+\section{Quetion \#}
+
+\subsection{Pseudocode}
+
+\subsection{Code}
+\subsubsection{C}
+\subsubsection{C++}
+\subsubsection{Java}
+\subsubsection{Python}
+
+\newpage
+
+\section{Quetion \#}
+
+\subsection{Pseudocode}
+
+\subsection{Code}
+\subsubsection{C}
+\subsubsection{C++}
+\subsubsection{Java}
+\subsubsection{Python}
+%-------------------------------------------------------------------------------
 \end{document}
