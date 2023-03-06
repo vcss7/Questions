@@ -1,50 +1,60 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-struct TreeNode
-{
+
+// Definition for a binary tree node.
+struct TreeNode {
     int val;
     struct TreeNode *left;
     struct TreeNode *right;
 };
 
-struct TreeNode* create_node(int val);
+void preorder(struct TreeNode* root, int* result, int* index);
 int* preorderTraversal(struct TreeNode* root, int* returnSize);
 
 int main(int argc, char** argv)
 {
+    struct TreeNode* root = malloc(sizeof(struct TreeNode));
+    root->val = 1;
+    root->left = NULL;
+    root->right = malloc(sizeof(struct TreeNode));
+    root->right->val = 2;
+    root->right->left = malloc(sizeof(struct TreeNode));
+    root->right->left->val = 3;
+    root->right->left->left = NULL;
+    root->right->left->right = NULL;
+    root->right->right = NULL;
+
+    int returnSize = 0;
+    int* result = preorderTraversal(root, &returnSize);
+
+    printf("returnSize: %d\n", returnSize);
+    printf("result: ");
+    for (int i = 0; i < returnSize; i++) {
+        printf("%d ", result[i]);
+    }
+    printf("\n");
+
     return 0;
 }
 
-struct TreeNode* create_node(int val)
-{
-    struct TreeNode *node = (struct TreeNode*)malloc(sizeof(struct TreeNode));
-    node->val = val;
-    node->left = NULL;
-    node->right = NULL;
-    return node;
+void preorder(struct TreeNode* root, int* result, int* index) {
+    if (root == NULL) return;
+
+    // append
+    result[*index] = root->val;
+    (*index)++;
+
+    preorder(root->left, result, index);
+    preorder(root->right, result, index);
 }
 
-int* preorderTraversal(struct TreeNode* root, int* returnSize)
-{
-    int *result = (int*)malloc(sizeof(int) * 100);
-    int i = 0;
-    if(root == NULL)
-    {
-        *returnSize = 0;
-        return result;
-    }
-    result[i++] = root->val;
-    int *left = preorderTraversal(root->left, returnSize);
-    int *right = preorderTraversal(root->right, returnSize);
-    for(int j = 0; j < *returnSize; j++)
-    {
-        result[i++] = left[j];
-    }
-    for(int j = 0; j < *returnSize; j++)
-    {
-        result[i++] = right[j];
-    }
-    *returnSize = i;
+int* preorderTraversal(struct TreeNode* root, int* returnSize) {
+    int* result = malloc(100 * sizeof(int));
+    int index = 0;
+
+    preorder(root, result, &index);
+    *returnSize = index;
+
     return result;
 }
