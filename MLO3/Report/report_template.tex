@@ -31,7 +31,7 @@
 \usepackage{hyperref}       % Required for adding hyperlinks
 \usepackage{algorithm}      % Required for adding psuedocode
 \usepackage{algpseudocode}  % Required for adding psuedocode
-%\usepackage{minted}         % Required for adding code syntax highlighting
+\usepackage{minted}         % Required for adding code syntax highlighting
 
 
 \geometry{                  % Geometry setup
@@ -135,11 +135,57 @@ Problem: \url{https://leetcode.com/problems/convert-sorted-array-to-binary-searc
 
 \subsection{Pseudocode}
 
+% Psuedocode for the solution to the problem
+
+\begin{algorithm}[H]
+    \begin{algorithmic}
+        \Function{sortedArrayToBST}{$nums$}
+            \If{$nums$ is empty}
+                \State \Return \{null\}
+            \EndIf
+            \State $mid \gets \lfloor \frac{len(nums)}{2} \rfloor$
+            \State $root \gets \{nums[mid]\}$
+            \State $root.left \gets \Call{sortedArrayToBST}{$nums[0:mid-1]$}$
+            \State $root.right \gets \Call{sortedArrayToBST}{$nums[mid+1:len(nums)]$}$
+            \State \Return $root$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+
 \subsection{Code}
 \subsubsection{C}
-\subsubsection{C++}
-\subsubsection{Java}
 \subsubsection{Python}
+
+\begin{minted}{python}
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
+        def constructor(left, right):
+            if left > right:
+                return None
+
+            midpoint = (left + right) // 2
+            root = TreeNode(nums[midpoint])
+            root.left = constructor(left, midpoint-1)
+            root.right = constructor(midpoint+1, right)
+            return root
+        return constructor(0, len(nums)-1)
+\end{minted}
+
+\subsubsection{TypeScript}
+
+\begin{minted}{typescript}
+    const sortedArrayToBST = (nums: number[]): TreeNode | null => {
+    if(nums.length === 0) {
+        return null;
+    }
+    const mid: number = Math.floor(nums.length / 2);
+    const root: TreeNode = new TreeNode(nums[mid]);
+    root.left = sortedArrayToBST(nums.slice(0, mid));
+    root.right = sortedArrayToBST(nums.slice(mid + 1));
+    return root;
+};
+\end{minted}
 
 \newpage
 
@@ -148,10 +194,153 @@ Problem: \url{https://leetcode.com/problems/binary-tree-preorder-traversal/}
 
 \subsection{Pseudocode}
 
+% Psuedocode for the iterative solution to the problem.
+
+\begin{algorithm}[H]
+    \begin{algorithmic}
+        \Function{preorderTraversal}{$root$}
+            \State $stack \gets \{\}$
+            \State $result \gets \{\}$
+            \If{$root$ is null}
+                \State \Return $result$
+            \EndIf
+            \State \Call{push}{$stack, root$}
+            \State \While{$stack$ is not empty}
+                \State \Call{pop}{$stack, root$}
+                \State \Call{append}{$result, root.val$}
+                \If{$root.right$ is not null}
+                    \State \Call{push}{$stack, root.right$}
+                \EndIf
+                \If{$root.left$ is not null}
+                    \State \Call{push}{$stack, root.left$}
+                \EndIf
+            \EndWhile
+            \State \Return $result$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+% Psuedocode for the recursive solution to the problem.
+
+\begin{algorithm}[H]
+    \begin{algorithmic}
+        \Function{preorderTraversal}{$root$}
+            \State $result \gets \{\}$
+            \State \Call{preorder}{$root, result$}
+            \State \Return $result$
+        \EndFunction
+        \Function{preorder}{$root, result$}
+            \If{$root$ is null}
+                \State \Return
+            \EndIf
+            \State \Call{append}{$result, root.val$}
+            \State \Call{preorder}{$root.left, result$}
+            \State \Call{preorder}{$root.right, result$}
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
 \subsection{Code}
 \subsubsection{C}
-\subsubsection{C++}
+
+\begin{minted}{c}
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+
+
+ void preorder(struct TreeNode* root, int* result, int* index) {
+    if (root == NULL) return;
+
+    // append
+    result[*index] = root->val;
+    (*index)++;
+
+    preorder(root->left, result, index);
+    preorder(root->right, result, index);
+}
+
+int* preorderTraversal(struct TreeNode* root, int* returnSize) {
+    int* result = malloc(100 * sizeof(int));
+    int index = 0;
+
+    preorder(root, result, &index);
+    *returnSize = index;
+
+    return result;
+}
+
+\end{minted}
+
+
 \subsubsection{Java}
-\subsubsection{Python}
+
+\begin{minted}{java}
+import java.util.*;
+
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> ans = new ArrayList<Integer>();
+
+        Stack<TreeNode> toVisit = new Stack<TreeNode>();
+
+        if (root != null) {
+            toVisit.push(root);
+        }
+
+        while(!toVisit.empty()) {
+            TreeNode hold = new TreeNode();
+            hold = toVisit.pop();
+
+            ans.add(hold.val);
+
+            if (hold.right != null) {
+                toVisit.push(hold.right);
+            }
+            if (hold.left != null) {
+                toVisit.push(hold.left);
+            }
+        }
+
+        return ans;
+    }
+}
+\end{minted}
+
+\subsubsection{JavaScript}
+
+\begin{minted}{javascript}
+
+const preorderTraversal = (root) => {
+    const result = [];
+    const stack = [];
+    if (root === null) {
+        return result;
+    }
+    stack.push(root);
+    while (stack.length > 0) {
+        const node = stack.pop();
+        result.push(node.val);
+        if (node.right !== null) {
+            stack.push(node.right);
+        }
+        if (node.left !== null) {
+            stack.push(node.left);
+        }
+    }
+    return result;
+};
+
+\end{minted}
+
 %-------------------------------------------------------------------------------
 \end{document}
