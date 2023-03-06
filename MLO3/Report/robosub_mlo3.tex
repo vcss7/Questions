@@ -81,7 +81,7 @@
     % Include a department/university logo
 	\includegraphics[width=0.5\textwidth]{../../ReportTemplate/robosub_logo.png}\\[1cm] 
 
-	%------------------------------------------------
+    %------------------------------------------------
 	%	Major Heading
 	%------------------------------------------------
     % Major heading
@@ -138,6 +138,7 @@ Problem: \url{https://leetcode.com/problems/convert-sorted-array-to-binary-searc
 % Psuedocode for the solution to the problem
 
 \begin{algorithm}[H]
+    \caption{Convert Sorted Array to Binary Search Tree}
     \begin{algorithmic}
         \Function{sortedArrayToBST}{$nums$}
             \If{$nums$ is empty}
@@ -155,6 +156,24 @@ Problem: \url{https://leetcode.com/problems/convert-sorted-array-to-binary-searc
 
 \subsection{Code}
 \subsubsection{C}
+
+\begin{minted}{c}
+struct TreeNode* sortedArrayToBST(int* nums, int numsSize){
+    if(numsSize == 0) {
+        return NULL;
+    }
+
+    int mid = numsSize / 2;
+    struct TreeNode* root = malloc(sizeof(struct TreeNode));
+
+    root->val = nums[mid];
+    root->left = sortedArrayToBST(nums, mid);
+    root->right = sortedArrayToBST(nums + mid + 1, numsSize - mid - 1);
+
+    return root;
+}
+\end{minted}
+
 \subsubsection{Python}
 
 \begin{minted}{python}
@@ -197,6 +216,7 @@ Problem: \url{https://leetcode.com/problems/binary-tree-preorder-traversal/}
 % Psuedocode for the iterative solution to the problem.
 
 \begin{algorithm}[H]
+    \caption{Binary Tree Preorder Traversal: Iterative}
     \begin{algorithmic}
         \Function{preorderTraversal}{$root$}
             \State $stack \gets \{\}$
@@ -223,6 +243,7 @@ Problem: \url{https://leetcode.com/problems/binary-tree-preorder-traversal/}
 % Psuedocode for the recursive solution to the problem.
 
 \begin{algorithm}[H]
+    \caption{Binary Tree Preorder Traversal: Recursive}
     \begin{algorithmic}
         \Function{preorderTraversal}{$root$}
             \State $result \gets \{\}$
