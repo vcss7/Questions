@@ -245,11 +245,13 @@ Problem: \url{https://leetcode.com/problems/binary-tree-preorder-traversal/}
 \begin{algorithm}[H]
     \caption{Binary Tree Preorder Traversal: Recursive}
     \begin{algorithmic}
+        \State \vspace{0.0cm}
         \Function{preorderTraversal}{$root$}
             \State $result \gets \{\}$
             \State \Call{preorder}{$root, result$}
             \State \Return $result$
         \EndFunction
+        \State \vspace{0.0cm}
         \Function{preorder}{$root, result$}
             \If{$root$ is null}
                 \State \Return
@@ -258,6 +260,7 @@ Problem: \url{https://leetcode.com/problems/binary-tree-preorder-traversal/}
             \State \Call{preorder}{$root.left, result$}
             \State \Call{preorder}{$root.right, result$}
         \EndFunction
+        \State \vspace{0.0cm}
     \end{algorithmic}
 \end{algorithm}
 
@@ -274,21 +277,8 @@ Problem: \url{https://leetcode.com/problems/binary-tree-preorder-traversal/}
  *     struct TreeNode *right;
  * };
  */
-/**
- * Note: The returned array must be malloced, assume caller calls free().
- */
 
-
- void preorder(struct TreeNode* root, int* result, int* index) {
-    if (root == NULL) return;
-
-    // append
-    result[*index] = root->val;
-    (*index)++;
-
-    preorder(root->left, result, index);
-    preorder(root->right, result, index);
-}
+void preorder(struct TreeNode* root, int* result, int* index);
 
 int* preorderTraversal(struct TreeNode* root, int* returnSize) {
     int* result = malloc(100 * sizeof(int));
@@ -298,6 +288,18 @@ int* preorderTraversal(struct TreeNode* root, int* returnSize) {
     *returnSize = index;
 
     return result;
+}
+
+void preorder(struct TreeNode* root, int* result, int* index) {
+    if (root == NULL) return;
+
+    // append
+    result[*index] = root->val;
+    (*index)++;
+
+    // traverse
+    preorder(root->left, result, index);
+    preorder(root->right, result, index);
 }
 
 \end{minted}
