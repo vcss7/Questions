@@ -207,9 +207,47 @@ Problem: \url{https://leetcode.com/problems/word-search/}
 
 \subsection{Pseudocode}
 
+\begin{algorithm}
+    \caption{Word Search}
+    \label{alg:wordSearch}
+    \begin{algorithmic}[1]
+        \Procedure{exist}{$board, word$}
+            \If{$!board$ or $!word$}
+                \State \Return $false$
+            \EndIf
+            \State $rows \gets board.length$
+            \State $cols \gets board[0].length$
+            \Procedure{dfs}{$row, col, index$}
+                \If{$row < 0$ or $row >= rows$ or $col < 0$ or $col >= cols$ or $board[row][col] \neq word[index]$}
+                    \State \Return $false$
+                \EndIf
+                \If{$index = word.length - 1$}
+                    \State \Return $true$
+                \EndIf
+                \State $temp \gets board[row][col]$
+                \State $board[row][col] \gets "/"$
+                \State $directions \gets [[-1, 0], [1, 0], [0, -1], [0, 1]]$
+                \For{$[dx, dy] \gets directions$}
+                    \If{$dfs(row + dx, col + dy, index + 1)$}
+                        \State \Return $true$
+                    \EndIf
+                \EndFor
+                \State $board[row][col] \gets temp$
+                \State \Return $false$
+            \EndProcedure
+            \For{$row \gets 0$ to $rows$}
+                \For{$col \gets 0$ to $cols$}
+                    \If{$dfs(row, col, 0)$}
+                        \State \Return $true$
+                    \EndIf
+                \EndFor
+            \EndFor
+            \State \Return $false$
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
 \subsection{Code}
-\subsubsection{C}
-\subsubsection{Java}
 \subsubsection{JavaScript}
 \begin{minted}{javascript}
 const exist = (board, word) => {
