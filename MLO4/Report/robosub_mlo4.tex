@@ -31,7 +31,7 @@
 \usepackage{hyperref}       % Required for adding hyperlinks
 \usepackage{algorithm}      % Required for adding psuedocode
 \usepackage{algpseudocode}  % Required for adding psuedocode
-%\usepackage{minted}         % Required for adding code syntax highlighting
+\usepackage{minted}         % Required for adding code syntax highlighting
 
 
 \geometry{                  % Geometry setup
@@ -136,11 +136,69 @@ Problem: \url{https://leetcode.com/problems/unique-paths/}
 
 \subsection{Pseudocode}
 
+\begin{algorithm}
+    \caption{Unique Paths}
+    \label{alg:uniquePaths}
+    \begin{algorithmic}[1]
+        \Procedure{uniquePaths}{$m, n$}
+            \State $hold[n]$
+            \State $count \gets 1$
+            \For{$j \gets 0$ to $n$}
+                \State $hold[j] \gets 1$
+            \EndFor
+            \While{$count < m$}
+                \For{$i \gets 1$ to $n$}
+                    \State $hold[i] \gets hold[i] + hold[i-1]$
+                \EndFor
+                \State $count \gets count + 1$
+            \EndWhile
+            \State \Return $hold[n-1]$
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
 \subsection{Code}
-\subsubsection{C}
-\subsubsection{C++}
 \subsubsection{Java}
-\subsubsection{Python}
+
+\begin{minted}{java}
+class Solution {
+    public int uniquePaths(int m, int n) {
+        int[] hold = new int[n];
+        int count = 1;
+        
+        for(int j = 0; j < n; j++){
+            hold[j] = 1;
+        }
+
+        while(count < m){
+            for(int i = 1; i < n; i++){
+                hold[i] = hold[i] + hold[i-1];
+            }
+
+            count++;
+        }
+
+        return hold[n-1];
+    }
+}
+\end{minted}
+
+\subsubsection{JavaScript}
+
+\begin{minted}{javascript}
+const uniquePaths = (m, n) => {
+const grid = new Array(m).fill(null).map(() => new Array(n).fill(1));
+
+for (let row = 1; row < m; row++) {
+    for (let col = 1; col < n; col++) {
+        grid[row][col] = grid[row - 1][col] + grid[row][col - 1];
+    }
+}
+
+return grid[m - 1][n - 1];
+}
+\end{minted}
+
 
 \newpage
 
@@ -151,8 +209,44 @@ Problem: \url{https://leetcode.com/problems/word-search/}
 
 \subsection{Code}
 \subsubsection{C}
-\subsubsection{C++}
 \subsubsection{Java}
-\subsubsection{Python}
+\subsubsection{JavaScript}
+\begin{minted}{javascript}
+const exist = (board, word) => {
+    if (!board || !word) return false;  
+    const rows = board.length;
+    const cols = board[0].length;
+ 
+    const dfs = (row, col, index) => {
+        if (
+            row < 0 || row >= rows ||
+            col < 0 || col >= cols ||
+            board[row][col] !== word[index]
+        ) {
+            return false;
+        }  
+        if (index === word.length - 1) return true;
+ 
+        const temp = board[row][col];
+        board[row][col] = "/";
+        const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+ 
+        for (const [dx, dy] of directions) {
+            if (dfs(row + dx, col + dy, index + 1)) return true;
+        }
+ 
+        board[row][col] = temp;
+        return false;
+    }
+ 
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+            if (dfs(row, col, 0)) return true;
+        }
+    }
+    return false;
+}
+
+\end{minted}
 %-------------------------------------------------------------------------------
 \end{document}
